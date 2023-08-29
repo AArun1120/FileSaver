@@ -14,6 +14,7 @@ public class FileUtilities {
 
         String y = "Goodbye Moon";
         FileUtilities.writeFile(y, "example.txt");
+        System.out.println(FileUtilities.countCharacters("demo.txt"));
     }
 
     public static String readFile(File fileName) throws IOException {
@@ -33,5 +34,20 @@ public class FileUtilities {
         pw.write(str);
         pw.close();
 
+    }
+
+    public static int countCharacters(String filename) throws IOException {
+        int count = 0;
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        while (reader.ready()) {
+            int character = reader.read();
+            if (character == -1) {
+                break;
+            }
+            count++;
+        }
+        reader.close();
+
+        return count;
     }
 }
